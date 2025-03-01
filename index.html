@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱心动画 - 献给最爱的你</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ffebee, #fce4ec);
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 30px auto;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 52px;
+            height: 80px;
+            border-radius: 40px 40px 0 0;
+            background-color: #ff4081;
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+            box-shadow: 0 0 20px rgba(255, 64, 129, 0.5);
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        .message {
+            font-family: 'Microsoft YaHei', sans-serif;
+            color: #e91e63;
+            font-size: 24px;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(233, 30, 99, 0.3);
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 1.5s infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; transform: translateY(0); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart"></div>
+        <div class="message">永远爱你 ❤️</div>
+        <div class="stars" id="stars"></div>
+    </div>
+
+    <script>
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 50;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+    </script>
+</body>
+</html>
